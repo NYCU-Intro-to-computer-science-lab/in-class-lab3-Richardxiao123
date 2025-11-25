@@ -1,54 +1,43 @@
-// 題目 4：遞迴的足跡 (Footsteps of Recursion) - 30分
-
 #include <iostream>
 using namespace std;
-void print(int n)
-{
-    if (n != 0)
-    {
+
+// 印出 d 層縮排
+void print_level(int d) {
+    for (int i = 0; i < d; i++) {
         cout << "|--";
-        print(n - 1);
     }
 }
 
-int fib(int n, int c)
+int fib(int n, int depth)
 {
+    print_level(depth);
+    cout << "SEARCH fib(" << n << ")\n";
 
-    if (n == 2)
-    {
-        print(c - n);
-        cout << "SEARCH fib(" << n << ')' << endl;
-        print(c - n);
-        cout << "GET fib(" << n << ") = 1" << endl;
-        return 1;
+    // base cases
+    if (n == 0) {
+        print_level(depth);
+        cout << "GET fib(" << n << ") = 0\n";
+        return 0;
     }
-    else if (n == 1)
-
-    {
-        print(c - n - 1);
-        cout << "SEARCH fib(" << n << ')' << endl;
-        print(c - n - 1);
-        cout << "GET fib(" << n << ") = 1" << endl;
+    if (n == 1) {
+        print_level(depth);
+        cout << "GET fib(" << n << ") = 1\n";
         return 1;
     }
 
-    else
-    {
-        print(c - n);
-        cout << "SEARCH fib(" << n << ')' << endl;
-        int j = fib(n - 1, c);
-        int m = fib(n - 2, c);
-        print(c - n);
-        cout << "GET fib(" << n << ") = " << j << endl;
-        return j + m;
-    }
+    // recursive calls
+    int a = fib(n - 1, depth + 1);
+    int b = fib(n - 2, depth + 1);
+
+    print_level(depth);
+    cout << "GET fib(" << n << ") = " << a + b << "\n";
+
+    return a + b;
 }
 
 int main()
 {
     int n;
     cin >> n;
-    int c = n;
-    cout << fib(n, c) << endl;
-    return 0;
+    cout << fib(n, 0) << endl;
 }
