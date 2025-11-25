@@ -2,9 +2,14 @@
 
 #include <iostream>
 using namespace std;
+int gcd(int n, int m)
+{
+    return n == 0 ? m : gcd(m % n, n);
+}
 
-int main() {
-    
-    
-    return 0;
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    cout << gcd(n, m) << endl;
 }
