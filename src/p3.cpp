@@ -3,8 +3,33 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    
-    
+bool isPrime(int n)
+{
+    if (n == 2)
+        return true;
+    for (int j = 2; j < n; j++)
+    {
+        if (n % j == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    for (int i = 2; i * 2 <= n; i++)
+    {
+        if (isPrime(i) && isPrime(n - i))
+        {
+            cout << i << ' ' << n - i;
+            break;
+        }
+    }
+
     return 0;
 }
