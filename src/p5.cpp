@@ -21,9 +21,6 @@ void hanoi(int n, int from, int to, int aux)
 int main()
 {
     int n;
-    while (cin >> n && n != 0)
-    {
-        hanoi(n, 1, 2, 3);
-        cout << endl;
-    }
+    cin >> n;
+    hanoi(n, 1, 2, 3);
 }
